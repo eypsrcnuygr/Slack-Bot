@@ -23,5 +23,5 @@ module MainModule
   end
 
   new_main = Main.new
-  new_main.engine
+  puts new_main.engine
 end

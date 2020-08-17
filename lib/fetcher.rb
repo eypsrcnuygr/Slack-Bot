@@ -23,7 +23,9 @@ module FetchMethods
       person_question = gets.chomp
       puts "Do you want ascending order, or descending order\n Please write 'asc' or 'desc'\n"
       val = gets.chomp
-      self.class.get("/2.2/search?page=1&order=#{val}&sort=votes&tagged=#{person_question}",
+      puts "What you want to have in your title\n"
+      intitle = gets.chomp
+      self.class.get("/2.2/search?page=1&order=#{val}&sort=votes&tagged=#{person_question}&intitle=#{intitle}",
                      @options)
     end
 
