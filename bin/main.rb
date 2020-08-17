@@ -9,17 +9,19 @@ module MainModule
     attr_accessor :slack, :stack
     def initialize
       @stack = FetcherStackExchange.new('stackoverflow', 1)
-      # @slack = PostSlack.new('slack')
+      @slack = PostSlack.new('slack')
     end
 
     def engine
       @test1 = stack.questions
       @test2 = @test1['items']
       @last_version = stack.link_chooser(@test2)
-      @last_version[0..9]
+      @real_last_version = @last_version[0..9]
+      @test3 = slack.post(@real_last_version.to_s)
+      [@real_last_version, @test3]
     end
   end
 
   new_main = Main.new
-  puts new_main.engine
+  new_main.engine
 end
