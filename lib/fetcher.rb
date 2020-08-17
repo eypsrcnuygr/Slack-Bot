@@ -1,0 +1,54 @@
+# frozen_string_literal: true
+
+require 'dotenv/load'
+require 'hashie'
+require 'http'
+require 'httparty'
+require 'json'
+require 'pry'
+require 'rubygems'
+# This is a module
+module FetchMethods
+  # This is a class
+  class FetcherStackExchange
+    include HTTParty
+    base_uri 'api.stackexchange.com'
+
+    def initialize(service, _page)
+      @options = { query: { site: service } }
+    end
+
+    def questions
+      puts "What is the tag you want to search:\n"
+      person_question = gets.chomp
+      puts "Do you want ascending order, or descending order\n Please write 'asc' or 'desc'\n"
+      val = gets.chomp
+      self.class.get("/2.2/search?page=1&order=#{val}&sort=votes&tagged=#{person_question}",
+                     @options)
+    end
+
+    def link_chooser(object)
+      array = []
+      object.each_with_index do |_item, index|
+        array.push(object[index]['link'])
+      end
+      array
+    end
+  end
+  # This is a class
+  class PostSlack
+    include HTTParty
+    base_uri 'https://slack.com/api'
+
+    def initialize(_acces_token = nil)
+      @acces_token = ENV['SLACK_API_TOKEN']
+    end
+
+    def post
+      rc = HTTP.post('https://slack.com/api/auth.test', params: {
+                       token: @acces_token
+                     })
+      puts JSON.pretty_generate(JSON.parse(rc.body))
+    end
+  end
+end
