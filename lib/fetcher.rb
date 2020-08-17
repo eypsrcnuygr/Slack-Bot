@@ -18,15 +18,24 @@ module FetchMethods
       @options = { query: { site: service } }
     end
 
+    def condition_checker(order, person_question, intitle)
+      if intitle.nil?
+        self.class.get("/2.2/search?page=1&order=#{order}&sort=votes&tagged=#{person_question}",
+                       @options)
+      else
+        self.class.get("/2.2/search?page=1&order=#{order}&sort=votes&tagged=#{person_question}&intitle=#{intitle}",
+                       @options)
+      end
+    end
+
     def questions
       puts "What is the tag you want to search:\n"
       person_question = gets.chomp
       puts "Do you want ascending order, or descending order\n Please write 'asc' or 'desc'\n"
-      val = gets.chomp
+      order = gets.chomp
       puts "What you want to have in your title\n"
       intitle = gets.chomp
-      self.class.get("/2.2/search?page=1&order=#{val}&sort=votes&tagged=#{person_question}&intitle=#{intitle}",
-                     @options)
+      condition_checker(order, person_question, intitle)
     end
 
     def link_chooser(object)
