@@ -22,7 +22,7 @@ class SlackMessenger
 
   def params
     {
-      token: ENV['SLACK_OAUTH'],
+      token: ENV['SLACK_API_TOKEN'],
       channel: @to,
       text: "@#{@from} has congratulated you: \"#{@message}\".",
       as_user: false,
