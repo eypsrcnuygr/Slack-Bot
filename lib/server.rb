@@ -10,36 +10,18 @@ require 'pry'
 class API < Sinatra::Base
   use SlackAuthorizer
 
-  include FetchMethods
-  attr_accessor :slack_msg, :stack, :message
-  def initialize
-    @stack = FetcherStackExchange.new('stackoverflow', 1)
-    @slack_msg = SlackMessenger.new
-    @message = ''
-  end
-
   VALID_CONGRATULATE_EXPRESSION = /^(@[\w\.\-_]+) (.+)/.freeze
-
-  HELP_RESPONSE = 'Use `/surf` to see the options`'
-  INVALID_RESPONSE = 'Sorry, I didn’t quite get that. You need to write down the tag you want to search for it.'
-  FIRST_QUESTION = "What is the tag you want to search:\n"
-  SECOND_QUESTION = "Do you want ascending order, or descending order\n Please write 'asc' or 'desc'\n"
-  THIRD_QUESTION = "What you want to have in your title\n"
+  HELP_RESPONSE = 'Use `/congratulate` to send a congratulation message to someone. Example: `/congratulate @anderson for design the new API`'
+  OK_RESPONSE = "Thanks for sending this! I'll share it with %s."
+  INVALID_RESPONSE = 'Sorry, I didn’t quite get that. Perhaps try the words in a different order? This usually works: `/congratulate [@someone] [message]`.'
   post '/slack/command' do
     case params['text'].to_s.strip
     when 'help', '' then HELP_RESPONSE
-    when FIRST_QUESTION
-      slack_msg.deliver
-      message = Regexp.last_match(1)
-      message
-    when SECOND_QUESTION
-      slack_msg.deliver
-      message = Regexp.last_match(1)
-      message
-    when THIRD_QUESTION
-      slack_msg.deliver
-      message = Regexp.last_match(1)
-      message
+    when VALID_CONGRATULATE_EXPRESSION
+      from = Regexp.last_match(1)
+      message = Regexp.last_match(2)
+      SlackMessenger.deliver(params['user_name'], from, message)
+      OK_RESPONSE % from
     else INVALID_RESPONSE
     end
   end
