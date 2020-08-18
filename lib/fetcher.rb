@@ -50,9 +50,20 @@ module FetchMethods
   class PostSlack
     def initialize(_acces_token = nil)
       @acces_token = ENV['SLACK_API_TOKEN']
+      @array = ['first element', 'second element']
     end
 
     def post(input_text)
+      rc = HTTP.post('https://slack.com/api/chat.postMessage', params: {
+                       token: @acces_token,
+                       channel: '#general',
+                       text: input_text,
+                       as_user: true
+                     })
+      JSON.pretty_generate(JSON.parse(rc.body))
+    end
+
+    def chat
       rc = HTTP.post('https://slack.com/api/chat.postMessage', params: {
                        token: @acces_token,
                        channel: '#general',
