@@ -11,7 +11,6 @@ module MainModule
     def initialize
       @stack = FetcherStackExchange.new('stackoverflow', 1)
       @slack = PostSlack.new('slack')
-      @array = ['first element', 'second element']
     end
 
     def engine

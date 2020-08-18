@@ -5,7 +5,7 @@ require 'net/http'
 require_relative './slack_authorizer.rb'
 require_relative './slack_messenger.rb'
 require_relative './fetcher.rb'
-
+require 'pry'
 # This is a class
 class API < Sinatra::Base
   use SlackAuthorizer
