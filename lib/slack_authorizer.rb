@@ -10,7 +10,7 @@ class SlackAuthorizer
 
   def call(env)
     req = Rack::Request.new(env)
-    if req.params['token'] == ENV['SLACK_API_TOKEN']
+    if req.params['token'] == ENV['SLACK_TOKEN']
       @app.call(env)
     else
       UNAUTHORIZED_RESPONSE
