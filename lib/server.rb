@@ -3,6 +3,7 @@
 require 'sinatra/base'
 require 'net/http'
 require_relative './slack_authorizer.rb'
+require_relative './slack_messenger.rb'
 
 # This is a class
 class API < Sinatra::Base
@@ -51,7 +52,11 @@ class API < Sinatra::Base
   post '/slack/command' do
     case params['text'].to_s.strip
     when 'help', '' then HELP_RESPONSE
-    when VALID_CONGRATULATE_EXPRESSION then OK_RESPONSE % Regexp.last_match(1)
+    when VALID_CONGRATULATE_EXPRESSION
+      from = Regexp.last_match(1)
+      message = Regexp.last_match(2)
+      SlackMessenger.deliver(params['user_name'], from, message)
+      OK_RESPONSE % from
     else INVALID_RESPONSE
     end
   end
