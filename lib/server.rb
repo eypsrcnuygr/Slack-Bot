@@ -43,7 +43,14 @@ class API < Sinatra::Base
 
   use SlackAuthorizer
 
+  HELP_RESPONSE = 'Use `/surf` to ssee the options`'
+  OK_RESPONSE = "Thanks for sending this! I'll share it with %s."
+  INVALID_RESPONSE = 'Sorry, I didn’t quite get that. You need to write down the tag you want to search for it.'
   post '/slack/command' do
-    'OK'
+    case params['text'].to_s.strip
+    when 'help', '' then HELP_RESPONSE
+    when VALID_CONGRATULATE_EXPRESSION then OK_RESPONSE % Regexp.last_match(1)
+    else INVALID_RESPONSE
+    end
   end
 end
