@@ -7,6 +7,7 @@ require 'httparty'
 require 'json'
 require 'pry'
 require 'rubygems'
+require_relative './slack_messenger.rb'
 # This is a module
 module FetchMethods
   # This is a class
@@ -54,16 +55,6 @@ module FetchMethods
     end
 
     def post(input_text)
-      rc = HTTP.post('https://slack.com/api/chat.postMessage', params: {
-                       token: @acces_token,
-                       channel: '#general',
-                       text: input_text,
-                       as_user: true
-                     })
-      JSON.pretty_generate(JSON.parse(rc.body))
-    end
-
-    def chat
       rc = HTTP.post('https://slack.com/api/chat.postMessage', params: {
                        token: @acces_token,
                        channel: '#general',

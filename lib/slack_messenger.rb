@@ -5,14 +5,11 @@ require 'httpclient'
 # this is a class
 class SlackMessenger
   SLACK_API_ENDPOINT = 'https://slack.com/api/chat.postMessage'
-  def self.deliver(from, to, message)
-    new(from, to, message).deliver
-  end
 
-  def initialize(from, to, message)
-    @from = from
-    @to = to
-    @message = message
+  def initialize
+    @first_question = "What is the tag you want to search:\n"
+    @second_question = "Do you want ascending order, or descending order\n Please write 'asc' or 'desc'\n"
+    @third_question = "What you want to have in your title\n"
   end
 
   def deliver
@@ -23,9 +20,8 @@ class SlackMessenger
   def params
     {
       token: ENV['SLACK_API_TOKEN'],
-      channel: @to,
-      text: "@#{@from} has congratulated you: \"#{@message}\".",
-      as_user: false,
+      channel: '#general',
+      text: "#{@first_question} #{@second_question} #{@third_question}",
       link_names: true
     }
   end
