@@ -11,9 +11,17 @@ class API < Sinatra::Base
   use SlackAuthorizer
 
   VALID_CONGRATULATE_EXPRESSION = /^(@[\w\.\-_]+) (.+)/.freeze
-  HELP_RESPONSE = 'Use `/congratulate` to send a congratulation message to someone. Example: `/congratulate @anderson for design the new API`'
+
+  HELP_RESPONSE = 'Use `/congratulate` to send a congratulation message to '\
+                  'someone. Example: `/congratulate @anderson for design the '\
+                  'new API`'
+
   OK_RESPONSE = "Thanks for sending this! I'll share it with %s."
-  INVALID_RESPONSE = 'Sorry, I didn’t quite get that. Perhaps try the words in a different order? This usually works: `/congratulate [@someone] [message]`.'
+
+  INVALID_RESPONSE = 'Sorry, I didn’t quite get that. Perhaps try the words in a'\
+                     ' different order? This usually works: '\
+                     '`/congratulate [@someone] [message]`.'
+
   post '/slack/command' do
     case params['text'].to_s.strip
     when 'help', '' then HELP_RESPONSE
