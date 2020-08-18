@@ -21,8 +21,12 @@ module MainModule
       @test3 = slack.post(@real_last_version.to_s)
       [@real_last_version, @test3]
     end
+
+    def engine2
+      slack.questionaire
+    end
   end
 
   new_main = Main.new
-  puts new_main.engine
+  puts new_main.engine2
 end

@@ -63,5 +63,15 @@ module FetchMethods
                      })
       JSON.pretty_generate(JSON.parse(rc.body))
     end
+
+    def questionaire
+      rc = HTTP.post('https://boiling-brook-95671.herokuapp.com/slack/command', params: {
+                       token: @acces_token,
+                       channel: '#general',
+                       text: 'hello',
+                       as_user: true
+                     })
+      JSON.pretty_generate(JSON.parse(rc.body))
+    end
   end
 end
