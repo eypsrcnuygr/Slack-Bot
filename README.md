@@ -1,8 +1,9 @@
 # Slack-Bot
-This is a terminal based slack bot that gives you the best matched, most voted or least voted stackoverflow posts.\n
-I choose this because I spend so much time on stackoverflow to get my answers and I thinks it is a fun thing to filter \n
-the posts depending on the tags and votes and what they have in their titles. So in the end the results will be posted to \n
-slack channel where you can get it easily.
+This is a terminal based slack bot that gives you the best matched, most voted or least voted stackoverflow posts.
+I choose this because I spend so much time on stackoverflow to get my answers and I thinks it is a fun thing to filter 
+the posts depending on the tags and votes and what they have in their titles. So in the end the results will be posted to
+slack channel where you can get it easily.<br>I am planning to improve this project by learning more about Slack Api and make this interactions on Slack
+but in the limited time, I've manage to do it on the terminal.
 
 ## Built With
 * Ruby
@@ -12,6 +13,8 @@ slack channel where you can get it easily.
 * Rubocop
 
 ## Video Explanation
+
+Here is the [video explanation](https://www.loom.com/share/c6dc475488264a9091199989660b1423) of this project.
 
 ## Prerequisities
 
@@ -23,9 +26,9 @@ To get this project up and running locally, you must already have ruby installed
 
 **Step 1**
 
-Navigate through the local folder where you want to clone the repository and write 
-``` git clone git@github.com:eypsrcnuygr/Slack-Bot.git```. It will clone the repo to your local folder.\n
-or with https\n
+Navigate through the local folder where you want to clone the repository and write<br>
+``` git clone git@github.com:eypsrcnuygr/Slack-Bot.git```. It will clone the repo to your local folder.<br>
+or with https<br>
 ```git clone https://github.com/eypsrcnuygr/Slack-Bot.git```.
 
 **Step 2**
