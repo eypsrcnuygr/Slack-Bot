@@ -1,6 +1,6 @@
 require_relative '../lib/fetcher.rb'
 
-describe FetchMethods do # rubocop:todo Metrics/BlockLength
+describe FetchMethods do
   let(:stack_fetch) { FetchMethods::FetcherStackExchange.new('stackoverflow', 1) }
   let(:slack_post) { FetchMethods::PostSlack.new }
   describe '#condition_Checker' do
