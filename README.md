@@ -1,6 +1,8 @@
 # Slack-Bot
-This is a terminal based slack bot that gives you the best matched, most voted or least voted stackoverflow posts.
-
+This is a terminal based slack bot that gives you the best matched, most voted or least voted stackoverflow posts.\n
+I choose this because I spend so much time on stackoverflow to get my answers and I thinks it is a fun thing to filter \n
+the posts depending on the tags and votes and what they have in their titles. So in the end the results will be posted to \n
+slack channel where you can get it easily.
 
 ## Built With
 * Ruby
@@ -8,6 +10,8 @@ This is a terminal based slack bot that gives you the best matched, most voted o
 * Stackexchange API
 * RSpec
 * Rubocop
+
+## Video Explanation
 
 ## Prerequisities
 
@@ -79,6 +83,10 @@ Where fetcher.rb lives. This file is responsible from post and get requests and 
 **bin**
 
 Where main.rb lives. This file is responsible from calling the methods in the 'fetcher.rb'.
+
+**spec**
+
+Where test files live. slack_spec is responsible from 5 test cases.
 
 ## 🤝 Contributing
 
