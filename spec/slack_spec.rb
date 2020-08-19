@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative '../lib/fetcher.rb'
 
 describe FetchMethods do # rubocop:todo Metrics/BlockLength
