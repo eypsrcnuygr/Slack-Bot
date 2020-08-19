@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
 require 'dotenv/load'
-require 'hashie'
 require 'http'
 require 'httparty'
 require 'json'
 require 'pry'
 require 'rubygems'
-require_relative './slack_messenger.rb'
 # This is a module
 module FetchMethods
   # This is a class
@@ -21,11 +19,14 @@ module FetchMethods
 
     def condition_checker(order, person_question, intitle)
       if intitle.nil?
-        self.class.get("/2.2/search?page=1&order=#{order}&sort=votes&tagged=#{person_question}",
-                       @options)
+        response = HTTParty.get("/2.2/search?page=1&order=#{order}&sort=votes&tagged=#{person_question}",
+                                @options)
+        response
       else
-        self.class.get("/2.2/search?page=1&order=#{order}&sort=votes&tagged=#{person_question}&intitle=#{intitle}",
-                       @options)
+        response2 = self.class.get("/2.2/search?page=1&order=#{order}&sort=votes
+          &tagged=#{person_question}&intitle=#{intitle}",
+                                   @options)
+        response2
       end
     end
 
@@ -34,9 +35,12 @@ module FetchMethods
       person_question = gets.chomp
       puts "Do you want ascending order, or descending order\n Please write 'asc' or 'desc'\n"
       order = gets.chomp
+      raise('Invalid order') unless order.include?('asc') || order.include?('desc')
+
       puts "What you want to have in your title\n"
       intitle = gets.chomp
-      condition_checker(order, person_question, intitle)
+      response = condition_checker(order, person_question, intitle)
+      response
     end
 
     def link_chooser(object)
@@ -51,7 +55,6 @@ module FetchMethods
   class PostSlack
     def initialize(_acces_token = nil)
       @acces_token = ENV['SLACK_API_TOKEN']
-      @array = ['first element', 'second element']
     end
 
     def post(input_text)
@@ -62,13 +65,6 @@ module FetchMethods
                        as_user: true
                      })
       JSON.pretty_generate(JSON.parse(rc.body))
-    end
-
-    def questions(input_text)
-      uri = URI('https://slack.com/api/chat.postMessage')
-      res = Net::HTTP.post_form(uri, 'token' => @acces_token, 'channel' => '#general', 'text' => input_text)
-      res2 = JSON.pretty_generate(JSON.parse(res.body))
-      puts res2
     end
   end
 end
