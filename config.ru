@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require './lib/server.rb'
+require './bin/main2'
 
 # Initialize the app and create the API (bot) object
-run Sinatra::Application
+run Rack::Cascade.new [API]

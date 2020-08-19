@@ -11,6 +11,9 @@ module MainModule
     def initialize
       @stack = FetcherStackExchange.new('stackoverflow', 1)
       @slack = PostSlack.new('slack')
+      @array = ["What do you want to search for?\n",
+                "Do you want ascending order, or descending order\n Please write 'asc' or 'desc'\n",
+                "What you want to have in your title\n"]
     end
 
     def engine
@@ -23,7 +26,7 @@ module MainModule
     end
 
     def engine2
-      slack.questionaire
+      slack.questions(@array[0])
     end
   end
 

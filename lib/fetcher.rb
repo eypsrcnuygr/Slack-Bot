@@ -64,14 +64,11 @@ module FetchMethods
       JSON.pretty_generate(JSON.parse(rc.body))
     end
 
-    def questionaire
-      rc = HTTP.post('https://boiling-brook-95671.herokuapp.com/slack/command', params: {
-                       token: @acces_token,
-                       channel: '#general',
-                       text: 'hello',
-                       as_user: true
-                     })
-      JSON.pretty_generate(JSON.parse(rc.body))
+    def questions(input_text)
+      uri = URI('https://slack.com/api/chat.postMessage')
+      res = Net::HTTP.post_form(uri, 'token' => @acces_token, 'channel' => '#general', 'text' => input_text)
+      res2 = JSON.pretty_generate(JSON.parse(res.body))
+      puts res2
     end
   end
 end
