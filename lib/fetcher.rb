@@ -64,7 +64,8 @@ module FetchMethods
                        text: input_text,
                        as_user: true
                      })
-      JSON.pretty_generate(JSON.parse(rc.body))
+      rc
+      # JSON.pretty_generate(JSON.parse(rc.body))
     end
   end
 end
