@@ -3,8 +3,8 @@ require_relative './stack_fetcher.rb'
 require_relative './post_slack.rb'
 require 'pry'
 
-class Bot # rubocop:todo Metrics/ClassLength
-  def self.new_game(question) # rubocop:todo Metrics/MethodLength
+class Bot
+  def self.start(question)
     [{
       color: '#5DFF00',
       title: question,
@@ -65,14 +65,12 @@ class Bot # rubocop:todo Metrics/ClassLength
   end
 
   def self.intro(user_id)
-    # Open IM
     client = Slack::Web::Client.new
     res = client.conversations_open(users: user_id)
-    # Attachment with play:start callback ID
-    attachments = new_game('Do you want to search a post')
+
+    attachments = start('Do you want to search a post')
     return if res.channel.id.nil?
 
-    # Send message
     client.chat_postMessage(
       channel: res.channel.id,
       text: 'Hi I am a StackOverFlow searcher',
@@ -134,24 +132,23 @@ class Bot # rubocop:todo Metrics/ClassLength
     post.post(input_text)
   end
 
-  def self.plays(user_id)
-    @plays ||= { user_id => nil }
+  def self.arranger(user_id)
+    @arranged_user ||= { user_id => nil }
   end
 
-  # Check if user has order to handle dm
   def self.handle_direct_message(msg)
     user_id = msg['user']
-    plays(user_id)
-    if @plays[user_id].nil?
+    arranger(user_id)
+    if @arranged_user[user_id].nil?
       intro(user_id)
-      @plays[user_id] = 'User'
+      @arranged_user[user_id] = 'User'
     else
       client = Slack::Web::Client.new
       client.chat_postMessage(
         channel: msg['channel'],
         text: 'Let\'s keep asking'
       )
-      @plays[user_id] = nil
+      @arranged_user[user_id] = nil
     end
   end
 end

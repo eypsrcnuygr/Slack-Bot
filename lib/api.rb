@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'sinatra/base'
 require 'net/http'
 require 'dotenv'
@@ -26,15 +24,15 @@ class API < Sinatra::Base
     case request_data['type']
 
     when 'url_verification'
-      # URL Verification event with challenge parameter
+
       request_data['challenge']
     when 'event_callback'
-      # Verify requests
+
       return if request_data['token'] != ENV['SLACK_TOKEN']
 
       event_data = request_data['event']
       case event_data['type']
-        # Message IM event
+
       when 'message'
         Bot.handle_direct_message(event_data) if event_data['user']
       else
@@ -47,16 +45,16 @@ class API < Sinatra::Base
   post '/slack/attachments' do
     request.body.rewind
     request_data = request.body.read
-    # Convert
+
     request_data = URI.decode_www_form_component(request_data, Encoding::UTF_8)
-    # Parse and remove "payload=" from beginning of string
+
     request_data = JSON.parse(request_data.sub!('payload=', ''))
     url = request_data['response_url']
     user_id = request_data['user']['id']
     msg = request_data['original_message']
 
     case request_data['callback_id']
-      # Start game callback
+
     when 'start:search'
       msg['text'] = 'Ok I am starting the search'
       msg['attachments'] = []
@@ -69,7 +67,6 @@ class API < Sinatra::Base
       Bot.post_slack(user_id, text)
       API.send_response(url, msg)
 
-      # Play finish callback
     when 'finish:search'
       msg['text'] = 'The search is finished'
       msg['attachments'] = []
