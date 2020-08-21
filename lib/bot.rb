@@ -1,6 +1,7 @@
 require 'slack-ruby-client'
 require_relative './stack_fetcher.rb'
 require_relative './post_slack.rb'
+require 'pry'
 
 class Bot # rubocop:todo Metrics/ClassLength
 
@@ -42,11 +43,39 @@ class Bot # rubocop:todo Metrics/ClassLength
           name: 'done',
           text: 'Try',
           type: 'button',
-          value: 'post:post'
+          value: 'finish:search'
         }
       ]
     }]
   end
+
+  # def self.new_game(question) # rubocop:todo Metrics/MethodLength
+  #   [{
+  #     color: '#5DFF00',
+  #     title: question,
+  #     callback_id: 'start:search',
+  #     actions: [
+  #       {
+  #         name: 'start',
+  #         text: '   YES   ',
+  #         type: 'button',
+  #         value: 'start:search'
+  #       }
+  #     ]
+  #   }, {
+  #     color: '#FF0000',
+  #     title: '',
+  #     callback_id: 'finish:search',
+  #     actions: [
+  #       {
+  #         name: 'start',
+  #         text: '   NO   ',
+  #         type: 'button',
+  #         value: 'finish:search'
+  #       }
+  #     ]
+  #   }]
+  # end
 
   def self.link_chooser(object)
     array = []
@@ -93,7 +122,7 @@ class Bot # rubocop:todo Metrics/ClassLength
     attachment = []
     attachment << {
       color: '#FFA500',
-      callback_id: 'finish:search',
+      callback_id: 'post:post',
       title: 'Goodbye!',
       actions: [
         {
@@ -118,7 +147,7 @@ class Bot # rubocop:todo Metrics/ClassLength
     # Send message
     client.chat_postMessage(
       channel: res.channel.id,
-      text: 'The search is finished from bor.rb',
+      text: 'The results will be displayed',
       attachments: attachments.to_json
     )
   end

@@ -1,17 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.0.3.2)
-      concurrent-ruby (~> 1.0, >= 1.0.2)
-      i18n (>= 0.7, < 2)
-      minitest (~> 5.1)
-      tzinfo (~> 1.1)
-      zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.1)
     coderay (1.1.3)
-    concurrent-ruby (1.1.7)
     diff-lcs (1.4.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -39,15 +32,12 @@ GEM
     httparty (0.18.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
-    i18n (1.8.5)
-      concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
     json (2.3.0)
     method_source (1.0.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.0512)
-    minitest (5.14.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     mustermann (1.1.1)
@@ -93,17 +83,13 @@ GEM
       rack (~> 2.0)
       rack-protection (= 2.0.8.1)
       tilt (~> 2.0)
-    slack-ruby-client (0.14.6)
-      activesupport
-      faraday (>= 0.9)
+    slack-ruby-client (0.15.0)
+      faraday (>= 1.0)
       faraday_middleware
       gli
       hashie
       websocket-driver
-    thread_safe (0.3.6)
     tilt (2.0.10)
-    tzinfo (1.2.7)
-      thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
@@ -111,7 +97,6 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.4.0)
 
 PLATFORMS
   ruby
@@ -125,7 +110,7 @@ DEPENDENCIES
   rspec (~> 3.9)
   rubocop (~> 0.81.0)
   sinatra (~> 2.0.2)
-  slack-ruby-client (~> 0.14.6)
+  slack-ruby-client (~> 0.15.0)
 
 BUNDLED WITH
    2.1.2

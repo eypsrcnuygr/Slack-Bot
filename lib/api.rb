@@ -5,6 +5,7 @@ require 'net/http'
 require 'dotenv'
 require_relative './bot.rb'
 require_relative './post_slack.rb'
+require 'pry'
 
 class API < Sinatra::Base
   attr_reader :stack_variable, :stack_links
@@ -23,6 +24,7 @@ class API < Sinatra::Base
     request_data = JSON.parse(request.body.read)
 
     case request_data['type']
+
     when 'url_verification'
       # URL Verification event with challenge parameter
       request_data['challenge']
@@ -56,23 +58,21 @@ class API < Sinatra::Base
     url = request_data['response_url']
     user_id = request_data['user']['id']
     msg = request_data['original_message']
+
     case request_data['callback_id']
       # Start game callback
     when 'start:search'
       msg['text'] = 'Ok I am starting the search'
       msg['attachments'] = []
       API.send_response(url, msg)
-      # msg = Bot.show_answer(user_id)
-      # API.send_response(url, msg)
       Bot.outro(user_id)
-      
+
     when 'post:post'
       msg = Bot.show_answer(user_id)
       text = msg[:attachments][0][:actions][0][:text]
       Bot.post_slack(user_id, text)
       API.send_response(url, msg)
-      # puts msg
-      
+
       # Play finish callback
     when 'finish:search'
       msg['text'] = 'The search is finished'
