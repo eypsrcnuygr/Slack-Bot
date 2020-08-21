@@ -36,7 +36,7 @@ Create a [workspace](https://slack.com/get-started#/create) and follow the instr
 **Step5**<br>
 When you are at your dashboard click 'Your Apps' section at top right corner and from there create an app and install your app to the workspace with 'admin' and 'chat:write' scopes. Those scopes are under the 'OAuths&Permissions' tab.<br>
 **Step 6**<br>
-Add 'incoming-webhooks', 'im:write', 'chat:write', 'channels:history', 'app_mentions:read', 'commands' scopes to the Bot Token Scopes at the same page. Then run ```èxport SLACK_BOT_TOKEN= your-token-here``` on your terminal.<br>
+Add 'incoming-webhooks', 'im:write', 'chat:write', 'channels:history', 'app_mentions:read', 'commands' scopes to the Bot Token Scopes at the same page. Then run ```export SLACK_BOT_TOKEN= your-token-here``` on your terminal.<br>
 **Step7**<br>
 Download [Ngrok](https://ngrok.com/) from their site and put the executable in your folder.<br>
 **Step 8**<br>
