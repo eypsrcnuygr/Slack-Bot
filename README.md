@@ -3,7 +3,7 @@ This is a slack Bot.I choose this because I spend so much time on stackoverflow 
 I am planning to improve this project by learning more about Slack Api and make more interactions on Slack
 but in the limited time, I've manage to do it for a static search.
 
-[!img](./assets/Screenshot.png)
+![screenshot](./assets/Screenshot.png)
 
 ## Built With
 * Ruby
