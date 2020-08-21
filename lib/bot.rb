@@ -56,14 +56,6 @@ class Bot
     array
   end
 
-  def self.link_arranger(object)
-    array = []
-    object.each_with_index do |_item, index|
-      array.push(object[index][:text])
-    end
-    array
-  end
-
   def self.intro(user_id)
     client = Slack::Web::Client.new
     res = client.conversations_open(users: user_id)
