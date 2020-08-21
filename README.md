@@ -26,33 +26,33 @@ To get this project up and running locally, you must already have ruby and Ngrok
 Navigate through the local folder where you want to clone the repository and write<br>
 ``` git clone git@github.com:eypsrcnuygr/Slack-Bot.git```. It will clone the repo to your local folder.<br>
 or with https<br>
-```git clone https://github.com/eypsrcnuygr/Slack-Bot.git```.
+```git clone https://github.com/eypsrcnuygr/Slack-Bot.git```.<br>
 **Step 2**
-Run ```cd Slack-Bot```
+Run ```cd Slack-Bot```<br>
 **Step 3**
-Run ```bundle install``` to get the necesary gems.
+Run ```bundle install``` to get the necesary gems.<br>
 **Step 4**
-Create a [workspace](https://slack.com/get-started#/create) and follow the instructions and get a 'OAuth Access Token'. 
+Create a [workspace](https://slack.com/get-started#/create) and follow the instructions and get a 'OAuth Access Token'.<br>
 **Step5**
-When you are at your dashboard click 'Your Apps' section at top right corner and from there create an app and install your app to the workspace with 'admin' and 'chat:write' scopes. Those scopes are under the 'OAuths&Permissions' tab.
+When you are at your dashboard click 'Your Apps' section at top right corner and from there create an app and install your app to the workspace with 'admin' and 'chat:write' scopes. Those scopes are under the 'OAuths&Permissions' tab.<br>
 **Step 6**
-Add 'incoming-webhooks', 'im:write', 'chat:write', 'channels:history', 'app_mentions:read', 'commands' scopes to the Bot Token Scopes at the same page. Then run ```èxport SLACK_BOT_TOKEN= your-token-here``` on your terminal.
+Add 'incoming-webhooks', 'im:write', 'chat:write', 'channels:history', 'app_mentions:read', 'commands' scopes to the Bot Token Scopes at the same page. Then run ```èxport SLACK_BOT_TOKEN= your-token-here``` on your terminal.<br>
 **Step7**
-Download [Ngrok](https://ngrok.com/) from their site and put the executable in your folder.
+Download [Ngrok](https://ngrok.com/) from their site and put the executable in your folder.<br>
 **Step 8**
-Run ```rackup``` to run the Sinatra and ```./ngrok htttp 9292``` from another terminal window. They both are need to be run at the same time to create a local server and make a tunnel to the internet.
+Run ```rackup``` to run the Sinatra and ```./ngrok htttp 9292``` from another terminal window. They both are need to be run at the same time to create a local server and make a tunnel to the internet.<br>
 **Step 9**
-Enable interactivity shortucts with the link that 'ngrok' gives. It should look something like this.(https://2c2993060c77.ngrok.io/slack/attachments). As it seems you need to add the /slack/attachments part to the end of it.
+Enable interactivity shortucts with the link that 'ngrok' gives. It should look something like this.(https://2c2993060c77.ngrok.io/slack/attachments). As it seems you need to add the /slack/attachments part to the end of it.<br>
 **Step 10**
-Enable Event Subscribtions from your App Dashboard and add the ngrok link with an /slack/events end.it should look something like this.(https://2c2993060c77.ngrok.io/slack/events).
+Enable Event Subscribtions from your App Dashboard and add the ngrok link with an /slack/events end.it should look something like this.(https://2c2993060c77.ngrok.io/slack/events).<br>
 **Step 11**
-Enable incoming webhooks and copy the link at the page. then run ```export SLACK_WEBHOOK_URL=your-webhookd-url``` on terminal. Another way to add those export create a .env file and add them in there. Since we have 'dotenv' installed we could easily grab this content to our code.
+Enable incoming webhooks and copy the link at the page. then run ```export SLACK_WEBHOOK_URL=your-webhookd-url``` on terminal. Another way to add those export create a .env file and add them in there. Since we have 'dotenv' installed we could easily grab this content to our code.<br>
 **Step 8**
-Open the Slack and go to App's page. Write something.
+Open the Slack and go to App's page. Write something.<br>
 **Step 9**
-It will answer you and click the buttons to interact.
+It will answer you and click the buttons to interact.<br>
 **Step 10**
-Enjoy!
+Enjoy!<br>
 
 ## Authors
 
