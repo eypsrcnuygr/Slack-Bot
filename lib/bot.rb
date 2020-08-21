@@ -4,7 +4,7 @@ require_relative './post_slack.rb'
 require 'pry'
 
 class Bot
-  def self.start(question)
+  def self.start(question) # rubocop:todo Metrics/MethodLength
     [{
       color: '#5DFF00',
       title: question,
@@ -106,14 +106,12 @@ class Bot
   end
 
   def self.outro(user_id)
-    # Open IM
     client = Slack::Web::Client.new
     res = client.conversations_open(users: user_id)
-    # Attachment with post:post callback ID
+
     attachments = after_search
     return if res.channel.id.nil?
 
-    # Send message
     client.chat_postMessage(
       channel: res.channel.id,
       text: 'The results will be displayed',
@@ -122,7 +120,6 @@ class Bot
   end
 
   def self.fetch_stack(order, person_question, intitle)
-    # Starts new game
     stack = FetcherStackExchange.new('stackoverflow', 1)
     stack.condition_checker(order, person_question, intitle)
   end
@@ -133,22 +130,22 @@ class Bot
   end
 
   def self.arranger(user_id)
-    @arranged_user ||= { user_id => nil }
+    @arranger ||= { user_id => nil }
   end
 
   def self.handle_direct_message(msg)
     user_id = msg['user']
     arranger(user_id)
-    if @arranged_user[user_id].nil?
+    if @arranger[user_id].nil?
       intro(user_id)
-      @arranged_user[user_id] = 'User'
+      @arranger[user_id] = 'User'
     else
       client = Slack::Web::Client.new
       client.chat_postMessage(
         channel: msg['channel'],
         text: 'Let\'s keep asking'
       )
-      @arranged_user[user_id] = nil
+      @arranger[user_id] = nil
     end
   end
 end
