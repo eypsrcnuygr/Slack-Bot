@@ -1,9 +1,7 @@
 # Slack-Bot
-This is a terminal based slack bot that gives you the best matched, most voted or least voted stackoverflow posts.
-I choose this because I spend so much time on stackoverflow to get my answers and I thinks it is a fun thing to filter 
-the posts depending on the tags and votes and what they have in their titles. So in the end the results will be posted to
-slack channel where you can get it easily.<br>I am planning to improve this project by learning more about Slack Api and make this interactions on Slack
-but in the limited time, I've manage to do it on the terminal.
+This is a slack Bot.I choose this because I spend so much time on stackoverflow to get my answers and I thinks it is a fun thing to have something like that.<br>
+I am planning to improve this project by learning more about Slack Api and make more interactions on Slack
+but in the limited time, I've manage to do it for a static search.
 
 ## Built With
 * Ruby
