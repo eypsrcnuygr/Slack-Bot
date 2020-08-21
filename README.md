@@ -18,53 +18,42 @@ Here is the [video explanation](https://www.loom.com/share/c6dc475488264a9091199
 
 ## Prerequisities
 
-To get this project up and running locally, you must already have ruby installed on your computer.
+To get this project up and running locally, you must already have ruby and Ngrok installed on your computer.
 
 ## Getting Started
 
 **To get this project set up on your local machine, follow these simple steps:**
 
 **Step 1**
-
 Navigate through the local folder where you want to clone the repository and write<br>
 ``` git clone git@github.com:eypsrcnuygr/Slack-Bot.git```. It will clone the repo to your local folder.<br>
 or with https<br>
 ```git clone https://github.com/eypsrcnuygr/Slack-Bot.git```.
-
 **Step 2**
-
 Run ```cd Slack-Bot```
-
 **Step 3**
-
 Run ```bundle install``` to get the necesary gems.
-
 **Step 4**
-
 Create a [workspace](https://slack.com/get-started#/create) and follow the instructions and get a 'OAuth Access Token'. 
-
 **Step5**
-
-Install your app to the workspace with 'admin' and 'chat:write' scopes.
-
+When you are at your dashboard click 'Your Apps' section at top right corner and from there create an app and install your app to the workspace with 'admin' and 'chat:write' scopes. Those scopes are under the 'OAuths&Permissions' tab.
 **Step 6**
-
-Go to your terminal and run ```export SLACK_API_TOKEN= your-token-in-here```.This will give you to right to connect your app.
-
+Add 'incoming-webhooks', 'im:write', 'chat:write', 'channels:history', 'app_mentions:read', 'commands' scopes to the Bot Token Scopes at the same page. Then run ```èxport SLACK_BOT_TOKEN= your-token-here``` on your terminal.
 **Step7**
-
-Run ```ruby bin/main.rb``` to run the program.
-
+Download [Ngrok](https://ngrok.com/) from their site and put the executable in your folder.
 **Step 8**
-
-There will be questions on your terminal to build your request as your will. The questions are self explanatory.
-
+Run ```rackup``` to run the Sinatra and ```./ngrok htttp 9292``` from another terminal window. They both are need to be run at the same time to create a local server and make a tunnel to the internet.
 **Step 9**
-
-After you follow the instructions there will be 10 'stackoverflow' links that you can click and go.
-
+Enable interactivity shortucts with the link that 'ngrok' gives. It should look something like this.(https://2c2993060c77.ngrok.io/slack/attachments). As it seems you need to add the /slack/attachments part to the end of it.
 **Step 10**
-
+Enable Event Subscribtions from your App Dashboard and add the ngrok link with an /slack/events end.it should look something like this.(https://2c2993060c77.ngrok.io/slack/events).
+**Step 11**
+Enable incoming webhooks and copy the link at the page. then run ```export SLACK_WEBHOOK_URL=your-webhookd-url``` on terminal. Another way to add those export create a .env file and add them in there. Since we have 'dotenv' installed we could easily grab this content to our code.
+**Step 8**
+Open the Slack and go to App's page. Write something.
+**Step 9**
+It will answer you and click the buttons to interact.
+**Step 10**
 Enjoy!
 
 ## Authors
@@ -81,15 +70,15 @@ Enjoy!
 
 **lib**
 
-Where fetcher.rb lives. This file is responsible from post and get requests and shape the response.
+Where api.rb, bot.rb, post_slack.rb, and stack_fetcher.rb live. Last two are responsible from making requests. bot.rb is responsible from the containing the methods. api.rb is arranging the endpoints' behaviour.
 
 **bin**
 
-Where main.rb lives. This file is responsible from calling the methods in the 'fetcher.rb'.
+Where main.rb lives. This file is responsible from configuration.
 
 **spec**
 
-Where test files live. slack_spec is responsible from 5 test cases.
+Where test files live. slack_spec is responsible from 4 test cases. All tests are checking the requests.
 
 ## 🤝 Contributing
 
