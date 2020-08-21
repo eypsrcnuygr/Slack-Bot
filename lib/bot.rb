@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'slack-ruby-client'
 require_relative './stack_fetcher.rb'
 require_relative './post_slack.rb'
@@ -34,7 +32,7 @@ class Bot # rubocop:todo Metrics/ClassLength
     }]
   end
 
-  def self.after_search # rubocop:todo Metrics/MethodLength
+  def self.after_search
     [{
       color: '#5DFF00',
       title: 'Do you want to try it',

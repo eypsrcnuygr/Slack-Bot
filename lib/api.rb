@@ -36,10 +36,6 @@ class API < Sinatra::Base
       case event_data['type']
         # Message IM event
       when 'message'
-        if event_data['subtype'] == 'bot_message' || event_data['subtype'] == 'message_changed'
-          return
-        end
-
         Bot.handle_direct_message(event_data) if event_data['user']
       else
         puts "Unexpected events\n"
