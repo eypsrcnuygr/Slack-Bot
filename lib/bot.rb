@@ -35,7 +35,7 @@ class Bot # rubocop:todo Metrics/ClassLength
   def self.after_search # rubocop:todo Metrics/MethodLength
     [{
       color: '#5DFF00',
-      title: 'Title try',
+      title: 'Do you want to try it',
       callback_id: 'post:post',
       actions: [
         {
@@ -82,7 +82,7 @@ class Bot # rubocop:todo Metrics/ClassLength
 
   def self.show_answer(user_id)
     {
-      text: 'Please choose your query',
+      text: 'Please accept my offer',
       attachments: link_creator(user_id)
     }
   end
@@ -93,8 +93,8 @@ class Bot # rubocop:todo Metrics/ClassLength
     attachment = []
     attachment << {
       color: '#FFA500',
-      callback_id: 'post:post',
-      title: '',
+      callback_id: 'finish:search',
+      title: 'Goodbye!',
       actions: [
         {
           name: 'post',
@@ -118,7 +118,7 @@ class Bot # rubocop:todo Metrics/ClassLength
     # Send message
     client.chat_postMessage(
       channel: res.channel.id,
-      text: 'The search is finished',
+      text: 'The search is finished from bor.rb',
       attachments: attachments.to_json
     )
   end

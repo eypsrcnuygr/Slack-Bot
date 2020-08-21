@@ -62,16 +62,17 @@ class API < Sinatra::Base
       msg['text'] = 'Ok I am starting the search'
       msg['attachments'] = []
       API.send_response(url, msg)
+      # msg = Bot.show_answer(user_id)
+      # API.send_response(url, msg)
+      Bot.outro(user_id)
+      
+    when 'post:post'
       msg = Bot.show_answer(user_id)
-      API.send_response(url, msg)
       text = msg[:attachments][0][:actions][0][:text]
       Bot.post_slack(user_id, text)
-      puts text
-      Bot.post_slack(user_id, text2)
-    when 'post:post'
-      msg = request_data['actions'][0]['value']
       API.send_response(url, msg)
-
+      # puts msg
+      
       # Play finish callback
     when 'finish:search'
       msg['text'] = 'The search is finished'
