@@ -1,7 +1,9 @@
 require 'slack-ruby-client'
 require_relative './stack_fetcher.rb'
+require_relative './post_slack.rb'
 
 class Bot # rubocop:todo Metrics/ClassLength
+
   def self.new_game(question) # rubocop:todo Metrics/MethodLength
     [{
       color: '#5DFF00',
@@ -30,16 +32,16 @@ class Bot # rubocop:todo Metrics/ClassLength
     }]
   end
 
-  def self.after_search(question) # rubocop:todo Metrics/MethodLength
+  def self.after_search # rubocop:todo Metrics/MethodLength
     [{
       color: '#5DFF00',
-      title: '',
+      title: 'Title try',
       callback_id: 'post:post',
       actions: [
         {
           name: 'done',
-          text: question,
-          type: 'plain_text',
+          text: 'Try',
+          type: 'button',
           value: 'post:post'
         }
       ]
@@ -50,6 +52,14 @@ class Bot # rubocop:todo Metrics/ClassLength
     array = []
     object.each_with_index do |_item, index|
       array.push(object[index]['link'])
+    end
+    array
+  end
+
+  def self.link_arranger(object)
+    array = []
+    object.each_with_index do |_item, index|
+      array.push(object[index][:text])
     end
     array
   end
@@ -70,18 +80,45 @@ class Bot # rubocop:todo Metrics/ClassLength
     )
   end
 
+  def self.show_answer(user_id)
+    {
+      text: 'Please choose your query',
+      attachments: link_creator(user_id)
+    }
+  end
+
+  def self.link_creator(user_id)
+    stack_variable = fetch_stack('asc', 'ruby', 'none')
+    stack_links = link_chooser(stack_variable['items'])
+    attachment = []
+    attachment << {
+      color: '#FFA500',
+      callback_id: 'post:post',
+      title: '',
+      actions: [
+        {
+          name: 'post',
+          text: stack_links,
+          type: 'plain_text',
+          value: 'post:post'
+        }
+      ]
+    }
+    attachment
+  end
+
   def self.outro(user_id)
     # Open IM
     client = Slack::Web::Client.new
     res = client.conversations_open(users: user_id)
-    # Attachment with play:start callback ID
-    attachments = after_search('The search is done')
+    # Attachment with post:post callback ID
+    attachments = after_search
     return if res.channel.id.nil?
 
     # Send message
     client.chat_postMessage(
       channel: res.channel.id,
-      text: 'Hi I am a StackOverFlow searcher second',
+      text: 'The search is finished',
       attachments: attachments.to_json
     )
   end
@@ -90,6 +127,11 @@ class Bot # rubocop:todo Metrics/ClassLength
     # Starts new game
     stack = FetcherStackExchange.new('stackoverflow', 1)
     stack.condition_checker(order, person_question, intitle)
+  end
+
+  def self.post_slack(_user_id, input_text)
+    post = PostSlack.new
+    post.post(input_text)
   end
 
   def self.plays(user_id)

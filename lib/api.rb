@@ -3,7 +3,7 @@
 require 'sinatra/base'
 require 'net/http'
 require 'dotenv'
-require_relative 'bot'
+require_relative './bot.rb'
 require_relative './post_slack.rb'
 
 class API < Sinatra::Base
@@ -62,13 +62,15 @@ class API < Sinatra::Base
       msg['text'] = 'Ok I am starting the search'
       msg['attachments'] = []
       API.send_response(url, msg)
-      @stack_variable = Bot.fetch_stack('asc', 'ruby', 'none')
-      @stack_links = Bot.link_chooser(@stack_variable['items'])
-      puts @stack_links
-    when 'post:post'
-      # chosen = request_data['actions'][0]['value'].to_i
+      msg = Bot.show_answer(user_id)
       API.send_response(url, msg)
-      Bot.post_slack('sercan')
+      text = msg[:attachments][0][:actions][0][:text]
+      Bot.post_slack(user_id, text)
+      puts text
+      Bot.post_slack(user_id, text2)
+    when 'post:post'
+      msg = request_data['actions'][0]['value']
+      API.send_response(url, msg)
 
       # Play finish callback
     when 'finish:search'
