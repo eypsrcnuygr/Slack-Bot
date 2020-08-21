@@ -14,7 +14,7 @@ but in the limited time, I've manage to do it on the terminal.
 
 ## Video Explanation
 
-Here is the [video explanation](https://www.loom.com/share/c6dc475488264a9091199989660b1423) of this project.
+Here is the [video explanation](https://www.loom.com/share/de84556995414869b6f6e127f291ac27) of this project.
 
 ## Prerequisities
 
@@ -96,6 +96,7 @@ For issues [check](https://github.com/eypsrcnuygr/Slack-Bot/issues).
 
 -   This Project was part of an assignment available on Microverse.
 -   Our thanks to Microverse and all our peers and colleagues there.
+-   Special thanks to owner of this [repository](https://github.com/ozovalihasan/slack-tictactoe-bot). I've learned a lot while I am modifying his techniques.
 
 ## 📝 License
 
