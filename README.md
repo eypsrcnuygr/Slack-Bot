@@ -47,11 +47,11 @@ Enable interactivity shortucts with the link that 'ngrok' gives. It should look 
 Enable Event Subscribtions from your App Dashboard and add the ngrok link with an /slack/events end.it should look something like this.(https://2c2993060c77.ngrok.io/slack/events).<br>
 **Step 11**
 Enable incoming webhooks and copy the link at the page. then run ```export SLACK_WEBHOOK_URL=your-webhookd-url``` on terminal. Another way to add those export create a .env file and add them in there. Since we have 'dotenv' installed we could easily grab this content to our code.<br>
-**Step 8**
+**Step 12**
 Open the Slack and go to App's page. Write something.<br>
-**Step 9**
+**Step 13**
 It will answer you and click the buttons to interact.<br>
-**Step 10**
+**Step 14**
 Enjoy!<br>
 
 ## Authors
