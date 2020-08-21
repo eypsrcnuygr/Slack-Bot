@@ -42,7 +42,7 @@ class API < Sinatra::Base
     end
   end
 
-  post '/slack/attachments' do # rubocop:todo Metrics/BlockLength
+  post '/slack/attachments' do
     request.body.rewind
     request_data = request.body.read
 
