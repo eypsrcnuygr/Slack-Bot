@@ -42,7 +42,7 @@ Add 'incoming-webhooks', 'im:write', 'chat:write', 'channels:history', 'app_ment
 **Step7**<br>
 Download [Ngrok](https://ngrok.com/) from their site and put the executable in your folder.<br>
 **Step 8**<br>
-Run ```rackup``` to run the Sinatra and ```./ngrok htttp 9292``` from another terminal window. They both are need to be run at the same time to create a local server and make a tunnel to the internet.<br>
+Run ```rackup``` to run the Sinatra and ```./ngrok http 9292``` from another terminal window. They both are need to be run at the same time to create a local server and make a tunnel to the internet.<br>
 **Step 9**<br>
 Enable interactivity shortucts with the link that 'ngrok' gives. It should look something like this.(https://2c2993060c77.ngrok.io/slack/attachments). As it seems you need to add the /slack/attachments part to the end of it.<br>
 **Step 10**<br>

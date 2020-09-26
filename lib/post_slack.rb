@@ -3,7 +3,7 @@ require 'http'
 
 class PostSlack
   def initialize(_acces_token = nil)
-    @acces_token = ENV['SLACK_API_TOKEN']
+    @acces_token = ENV['SLACK_BOT_TOKEN']
   end
 
   def post(input_text)
