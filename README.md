@@ -1,5 +1,5 @@
 # Slack-Bot
-This is a slack Bot.I choose this because I spend so much time on stackoverflow to get my answers and I thinks it is a fun thing to have something like that.<br>
+This is a slack Bot.I choose this because I spend so much time on StackOverflow to get my answers and I think it is a fun thing to have something like that.<br>
 I am planning to improve this project by learning more about Slack Api and make more interactions on Slack
 but in the limited time, I've manage to do it for a static search.
 
