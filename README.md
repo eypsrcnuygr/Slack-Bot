@@ -1,5 +1,5 @@
 # Slack-Bot
-This is a slack Bot. I choose this because I spend so much time on StackOverflow to get my answers and I think it is a fun thing to have something like that.
+This is a slack Bot. I chose this because I spend so much time on StackOverflow to get my answers and I think it is a fun thing to have something like that.
 I am planning to improve this project by learning more about Slack Api and make more interactions on Slack
 but in the limited time, I've managed to do it for a static search. Right now there is an interaction that asks you 'Would you like to search on StackOverflow' and it gives you the answer from StackExchange API. Built with Ruby.
 
